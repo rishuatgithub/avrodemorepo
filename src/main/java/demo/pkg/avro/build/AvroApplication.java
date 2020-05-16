@@ -19,7 +19,7 @@ public class AvroApplication {
 
         System.out.println("Avro Demo Application - Reading Avro File");
 
-        final String FILENAME = "/Users/rishushrivastava/Documents/GitHub/avrodemorepo/src/main/resources/user_data.avro";
+        final String FILENAME = "src/main/resources/user_data.avro";
 
         // generate schema from .avro file (in case of missing .avsc file)
         Schema file_avro_schema = new GenerateAvroSchema().getSchemaFromFile(FILENAME);
