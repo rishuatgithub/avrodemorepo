@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
 public class PublishAvroMessages {
 
     final String PROJECT_ID = "gcpproject-rks";
-    final String TOPIC_NAME = "Avro-demo-test-topic";
+    final String TOPIC_NAME = "avro-demo-test-topic";
     final String SUBSCRIPTION_NAME = "avro-demo-test-topic-sub";
 
     /**
