@@ -23,7 +23,7 @@ public class SerializeAvroRequest {
      * @param request
      * @return
      */
-    public byte[] serializeavro(ArrayList<User> request){
+    public ByteString serializeavro(User request){
 
         DatumWriter<User> datumWriter = new SpecificDatumWriter<User>(User.class);
         byte[] data = new byte[0];
@@ -32,10 +32,7 @@ public class SerializeAvroRequest {
 
         try{
             encoder = EncoderFactory.get().jsonEncoder(User.getClassSchema(),byteArrayOutputStream);
-
-            for(User u: request){
-                datumWriter.write(u,encoder);
-            }
+            datumWriter.write(request,encoder);
 
             encoder.flush();
             data = byteArrayOutputStream.toByteArray();
@@ -44,7 +41,8 @@ public class SerializeAvroRequest {
             System.out.println("Serialization Error.");
         }
 
-        return data;
+
+        return ByteString.copyFrom(data);
     }
 
 
