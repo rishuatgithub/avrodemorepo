@@ -7,14 +7,15 @@ import com.google.cloud.pubsub.v1.MessageReceiver;
 import com.google.cloud.pubsub.v1.Publisher;
 import com.google.cloud.pubsub.v1.Subscriber;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.Duration;
 import com.google.pubsub.v1.ProjectSubscriptionName;
 import com.google.pubsub.v1.ProjectTopicName;
 import com.google.pubsub.v1.PubsubMessage;
-import com.sun.deploy.security.DeployURLClassLoader;
 import demo.pkg.avro.streaming.build.model.User;
-import org.apache.beam.sdk.coders.AvroCoder;
-import org.apache.beam.sdk.io.gcp.pubsub.PubsubIO;
+import org.apache.avro.generic.GenericRecord;
+import org.apache.avro.io.BinaryDecoder;
+import org.apache.avro.io.DatumReader;
+import org.apache.avro.io.DecoderFactory;
+import org.apache.avro.specific.SpecificDatumReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class PublishAvroMessages {
             //ByteString byteString = ByteString.copyFrom(messages);
             //System.out.println("Sending Messages : "+messages.toStringUtf8());
             PubsubMessage pubsubMessage = PubsubMessage.newBuilder().setData(messages).build();
+
             ApiFuture<String> future = publisher.publish(pubsubMessage);
             futures.add(future);
 
@@ -88,8 +90,20 @@ public class PublishAvroMessages {
         @Override
         public void receiveMessage(PubsubMessage message, AckReplyConsumer consumer) {
 
-            System.out.println("Message ID:[ "+message.getMessageId()+" ]; Data: "+message.getData().toStringUtf8());
-            consumer.ack();
+            BinaryDecoder decoderFactory = DecoderFactory.get().binaryDecoder(message.getData().toByteArray(),null);
+            DatumReader<User> reader = new SpecificDatumReader<User>(User.getClassSchema());
+
+            try {
+                GenericRecord payload = reader.read(null,decoderFactory);
+
+                System.out.println("Message ID:[ "+message.getMessageId()+" ]; Data: "+payload.toString());
+                consumer.ack();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
 

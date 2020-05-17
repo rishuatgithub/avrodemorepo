@@ -31,8 +31,10 @@ public class SerializeAvroRequest {
         Encoder encoder = null;
 
         try{
-            encoder = EncoderFactory.get().jsonEncoder(User.getClassSchema(),byteArrayOutputStream);
+            //encoder = EncoderFactory.get().jsonEncoder(User.getClassSchema(),byteArrayOutputStream);
+            encoder = EncoderFactory.get().binaryEncoder(byteArrayOutputStream,null);
             datumWriter.write(request,encoder);
+
 
             encoder.flush();
             data = byteArrayOutputStream.toByteArray();

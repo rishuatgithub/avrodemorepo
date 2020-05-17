@@ -1,0 +1,60 @@
+{
+  "definitions" : {
+    "record:demo.pkg.avro.streaming.build.model.User" : {
+      "description" : "User Schema",
+      "type" : "object",
+      "required" : [ "id", "name", "age", "phone_no", "address" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "minimum" : -2147483648,
+          "maximum" : 2147483647
+        },
+        "name" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "age" : {
+          "oneOf" : [ {
+            "type" : "integer",
+            "minimum" : -2147483648,
+            "maximum" : 2147483647
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "phone_no" : {
+          "oneOf" : [ {
+            "type" : "string"
+          }, {
+            "type" : "null"
+          } ]
+        },
+        "address" : {
+          "$ref" : "#/definitions/record:demo.pkg.avro.streaming.build.model.Address"
+        }
+      }
+    },
+    "record:demo.pkg.avro.streaming.build.model.Address" : {
+      "type" : "object",
+      "required" : [ "house_no", "country", "postal_code" ],
+      "additionalProperties" : false,
+      "properties" : {
+        "house_no" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "postal_code" : {
+          "type" : "string"
+        }
+      }
+    }
+  },
+  "$ref" : "#/definitions/record:demo.pkg.avro.streaming.build.model.User"
+}

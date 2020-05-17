@@ -27,37 +27,31 @@
     </dependencyManagement>
 
     <dependencies>
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>29.0-jre</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>3.12.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro</artifactId>
             <version>1.9.2</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro-compiler</artifactId>
             <version>1.9.2</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.avro</groupId>
             <artifactId>avro-tools</artifactId>
             <version>1.9.2</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.beam</groupId>
             <artifactId>beam-sdks-java-core</artifactId>
@@ -73,28 +67,25 @@
             <artifactId>beam-runners-direct-java</artifactId>
             <version>2.20.0</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-pubsub</artifactId>
         </dependency>
-
-
-
-
-
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
         </dependency>
-
-
     </dependencies>
 
 
     <build>
-        <plugins>
+        <!-- <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -103,7 +94,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins> -->
     </build>
 
 </project>
