@@ -1,0 +1,32 @@
+{
+    "type":"record",
+    "name":"User",
+    "doc":"User Schema",
+    "namespace":"demo.pkg.avro.streaming.build.model",
+    "fields":
+    [
+        {"name":"id","type":"int"},
+        {"name":"name","type":["string","null"]},
+        {"name":"age","type":["int","null"]},
+        {"name":"address",
+            "type":{
+                "type":"record",
+                            "name":"Address",
+                            "fields":[
+                                {
+                                    "name":"house_no",
+                                    "type":"string"
+                                },
+                                {
+                                    "name":"country",
+                                    "type":"string"
+                                },
+                                {
+                                    "name":"postal_code",
+                                    "type":"string"
+                                }
+                            ]
+            }
+        }
+    ]
+}

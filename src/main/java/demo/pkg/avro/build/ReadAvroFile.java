@@ -34,7 +34,7 @@ public class ReadAvroFile {
         ArrayList<GenericRecord> filedata = new ArrayList<>();
 
         while (dataFileReader.hasNext()){
-            data = dataFileReader.next(data);
+            data = dataFileReader.next();
             filedata.add(data);
         }
 
